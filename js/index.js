@@ -45,14 +45,15 @@ function setMessage (message) {
 }
 
 //funzione per mostrare tutte le bombe quando ne premo una
-function showAllBombs () {
+function showAllBombs (bombs) {
     const squares = document.querySelectorAll('.square') 
         for (let square of squares) {
-            if (bomb.includes(parseInt(square.innerHTML))) {
+            if (bombs.includes(parseInt(square.innerText))) {
                 square.classList.add ('unsafe');
             }
     }
 }
+console.log(showAllBombs)
 
 
 //funzione per eseguire il gioco quando premo play
