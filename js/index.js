@@ -69,6 +69,7 @@ function play (e) {
      const NUM_BOMBS = 16;
     const level = document.getElementById('level').value;
     //console.log(level)
+    //creo il numero di quadratini da inserire a seconda della difficoltà selezionata
     let squareNumbers;
     switch (level) {
         case 'easy':
@@ -84,24 +85,28 @@ function play (e) {
     //console.log (squareNumbers);
 
 
-
+    //determino il punteggio massimo
     let maxScore = squareNumbers - NUM_BOMBS;
     //determino il numero di celle per lato usano la radice quadrata
     let squareperRow = Math.sqrt(squareNumbers);
     //console.log(squareperRow)
-   
+
+     //creo le bombe richiamando la variabile
      const bombs = generateBombs (NUM_BOMBS, squareNumbers);
 
     //genero una cella per ogni numero di celle
     for (let i = 1; i <= squareNumbers; i++) {
           const square = drawSquare(i, squareperRow);
           square.addEventListener('click', function(e) {
+        //condizione per controllare se il gioco deve continuare o no quando prendi o no una bomba
           if(!gameOver && ! this.classList.contains('safe'))  {
+            //se clicchi sulla bomba il gioco si ferma e compare il testo hai perso
             if(bombs.includes(parseInt(this.innerText))){
                 this.classList.add ('unsafe')
                 message = `hai perso! il tuo punteggio è ${score}`;
                 gameOver = true;
                 showAllBombs(bombs)
+            // se non clicchi sulle bombe il gioco continua e il punteggio aumenta
             }else {
                 this.classList.add ('safe');
                 score++;
