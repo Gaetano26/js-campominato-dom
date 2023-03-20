@@ -46,7 +46,7 @@ function setMessage (message) {
 
 //funzione per mostrare tutte le bombe quando ne premo una
 function showAllBombs () {
-    const squares = document.querySelectorAll('square') 
+    const squares = document.querySelectorAll('.square') 
         for (let square of squares) {
             if (bomb.includes(parseInt(square.innerHTML))) {
                 square.classList.add ('unsafe');
